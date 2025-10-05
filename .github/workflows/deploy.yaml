@@ -21,3 +21,13 @@ jobs:
         port: 22
         source: "."
         target: "/var/www/html"
+        
+    - name: Run permissions script on VPS
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        port: 22
+        script: |
+          /var/www/fix-permissions.sh
