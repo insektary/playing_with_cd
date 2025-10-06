@@ -19,16 +19,15 @@ jobs:
         cache: 'npm'
         
     - name: Install dependencies
-      run: npm ci
+      run: |
+        # Пытаемся использовать ci, если не получается - используем install
+        npm ci || npm install
       
     # - name: Run tests (if any)
-    #   run: npm test -- --watchAll=false
+    #   run: npm test -- --watchAll=false --passWithNoTests
       
     - name: Build React app
       run: npm run build
-      
-    - name: Show build contents (for debugging)
-      run: ls -la build/
       
     - name: Deploy to VPS
       uses: appleboy/scp-action@v0.1.3
