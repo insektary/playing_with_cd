@@ -29,14 +29,24 @@ jobs:
     - name: Build React app
       run: npm run build
       
-    - name: Deploy to VPS
+    - name: Clean server directory
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        port: 22
+        script: |
+          sudo rm -rf /var/www/html/*
+
+    - name: Deploy built files
       uses: appleboy/scp-action@v0.1.3
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         port: 22
-        source: "build/*"
+        source: "build/."
         target: "/var/www/html"
         
     - name: Run permissions script on VPS
