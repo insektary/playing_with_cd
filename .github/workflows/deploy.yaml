@@ -20,8 +20,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        # Пытаемся использовать ci, если не получается - используем install
-        npm ci || npm install
+        npm ci
       
     # - name: Run tests (if any)
     #   run: npm test -- --watchAll=false --passWithNoTests
