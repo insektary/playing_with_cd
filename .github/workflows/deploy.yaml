@@ -32,9 +32,3 @@ jobs:
         script: |
           cd /var/www/source
           npm ci
-          npm run build
-          sudo rm -rf /var/www/html/build/*
-          sudo cp -r build/* /var/www/html/build/
-          sudo chown -R www-data:www-data /var/www/html/build/
-          sudo chmod -R 755 /var/www/html/build/
-          echo "React app built and deployed successfully!"
