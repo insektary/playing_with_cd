@@ -23,7 +23,7 @@ jobs:
         target: "/var/www/source"
         
     - name: Build and deploy on VPS
-      uses: appleboy/ssh-action@v0.1.10
+      uses: appleboy/ssh-action@v1.2.2
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
