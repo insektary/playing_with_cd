@@ -10,27 +10,30 @@ on:
         type: string
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    outputs:
-      branch_exists: ${{ steps.check_branch.outputs.exists }}
-    steps:
-    - name: Check if branch exists
-      id: check_branch
-      run: |
-        git ls-remote --heads origin ${{ github.event.inputs.branch }} | grep -q .
-        if [ $? -eq 0 ]; then
-          echo "exists=true" >> $GITHUB_OUTPUT
-        else
-          echo "exists=false" >> $GITHUB_OUTPUT
-        fi
+  # validate:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     branch_exists: ${{ steps.check_branch.outputs.exists }}
+  #   steps:
+  #   - name: Check if branch exists
+  #     id: check_branch
+  #     run: |
+  #       git ls-remote --heads origin ${{ github.event.inputs.branch }} | grep -q .
+  #       if [ $? -eq 0 ]; then
+  #         echo "exists=true" >> $GITHUB_OUTPUT
+  #       else
+  #         echo "exists=false" >> $GITHUB_OUTPUT
+  #       fi
 
   deploy-code:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
+    - name: Checkout selected branch
       uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.branch }}
+        fetch-depth: 0
       
     - name: Deploy source code to VPS
       uses: appleboy/scp-action@v0.1.3
