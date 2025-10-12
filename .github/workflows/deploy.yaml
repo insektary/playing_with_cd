@@ -67,12 +67,12 @@ jobs:
           sudo chmod -R 755 /var/www/html/build/
           echo "React app built and deployed successfully!"
 
-  branch_not_found:
-    runs-on: ubuntu-latest
-    needs: validate
-    if: needs.validate.outputs.branch_exists == 'false'
-    steps:
-    - name: Branch not found
-      run: |
-        echo "❌ Branch '${{ github.event.inputs.branch }}' not found"
-        echo "Please check the branch name and try again"
+  # branch_not_found:
+  #   runs-on: ubuntu-latest
+  #   needs: validate
+  #   if: needs.validate.outputs.branch_exists == 'false'
+  #   steps:
+  #   - name: Branch not found
+  #     run: |
+  #       echo "❌ Branch '${{ github.event.inputs.branch }}' not found"
+  #       echo "Please check the branch name and try again"
