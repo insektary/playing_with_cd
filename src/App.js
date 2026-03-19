@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {ExportedComponent} from './ExportedComponent'
 
 function Greeting({ name }) {
