@@ -1,5 +1,5 @@
 {
-  "name": "@insektary/shared-package-test",
+  "name": "@insektary/playing_with_cd",
   "version": "1.0.0",
   "main": "src/App.js",
   "files": ["src"],
